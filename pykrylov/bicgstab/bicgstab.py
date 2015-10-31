@@ -54,7 +54,7 @@ class BiCGSTAB( KrylovMethod ):
 
         # Initial guess is zero unless one is supplied
         result_type = np.result_type(self.op.dtype, rhs.dtype)
-        guess_supplied = 'guess' in kwargs.keys()
+        guess_supplied = 'guess' in list(kwargs.keys())
         x = kwargs.get('guess', np.zeros(n)).astype(result_type)
         matvec_max = kwargs.get('matvec_max', 2*n)
 

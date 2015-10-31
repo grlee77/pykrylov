@@ -28,8 +28,8 @@ if __name__ == '__main__':
     hdr_fmt = '%10s  %6s  %8s  %8s  %8s'
     hdr = hdr_fmt % ('Name', 'Matvec', 'Resid0', 'Resid', 'Error')
     fmt = '%10s  %6d  %8.2e  %8.2e  %8.2e'
-    print hdr
-    print '-' * len(hdr)
+    print(hdr)
+    print('-' * len(hdr))
 
     AA = spmatrix.ll_mat_from_mtx(sys.argv[1])
     A = sp(matrix=AA)
@@ -51,5 +51,5 @@ if __name__ == '__main__':
         ks.solve(rhs, guess = 1+np.arange(n, dtype=op.dtype), matvec_max=2*n)
 
         err = np.linalg.norm(ks.bestSolution-e)/np.sqrt(n)
-        print fmt % (ks.acronym, ks.nMatvec, ks.residNorm0, ks.residNorm, err)
+        print(fmt % (ks.acronym, ks.nMatvec, ks.residNorm0, ks.residNorm, err))
 

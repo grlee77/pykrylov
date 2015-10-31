@@ -26,7 +26,7 @@
 #OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
 #SUCH DAMAGE.
 
-from __future__ import division
+
 import unittest
 from numpy.testing import assert_, assert_equal, assert_raises
 import numpy as np

@@ -194,16 +194,16 @@ class LSMRFramework(KrylovMethod):
         if itnlim is None: itnlim = minDim
 
         if show:
-            print ' '
-            print 'LSMR            Least-squares solution of  Ax = b'
+            print(' ')
+            print('LSMR            Least-squares solution of  Ax = b')
             str1 = 'The matrix A has %8g rows  and %8g cols' % (m, n)
             str2 = 'damp = %20.14e' % (damp)
             str3 = 'atol = %8.2e                 conlim = %8.2e'%( atol, conlim)
             str4 = 'btol = %8.2e               itnlim = %8g'  %( btol, itnlim)
-            print str1
-            print str2
-            print str3
-            print str4
+            print(str1)
+            print(str2)
+            print(str3)
+            print(str4)
 
         # Initialize the Golub-Kahan bidiagonalization process.
 
@@ -283,17 +283,17 @@ class LSMRFramework(KrylovMethod):
         normar = alpha * beta
         if normar == 0:
             if show:
-                print msg[0]
+                print(msg[0])
             return x, istop, itn, normr, normar, normA, condA, normx
 
         if show:
-            print ' '
-            print hdg1, hdg2
+            print(' ')
+            print(hdg1, hdg2)
             test1  = 1;             test2  = alpha / beta
             str1   = '%6g %12.5e'    %(    itn,   x[0] )
             str2   = ' %10.3e %10.3e'%(  normr, normar )
             str3   = '  %8.1e %8.1e' %(  test1,  test2 )
-            print ''.join([str1, str2, str3])
+            print(''.join([str1, str2, str3]))
 
         if store_resids:
             self.resids.append(normr)
@@ -463,30 +463,30 @@ class LSMRFramework(KrylovMethod):
                 if prnt:
                     if pcount >= pfreq:
                         pcount = 0
-                        print ' '
-                        print hdg1, hdg2
+                        print(' ')
+                        print(hdg1, hdg2)
                     pcount = pcount + 1
                     str1   = '%6g %12.5e'    %(    itn,   x[0] )
                     str2   = ' %10.3e %10.3e'%(  normr, normar )
                     str3   = '  %8.1e %8.1e' %(  test1,  test2 )
                     str4   = ' %8.1e %8.1e'  %(  normA,  condA )
-                    print ''.join([str1, str2, str3, str4])
+                    print(''.join([str1, str2, str3, str4]))
 
             if istop > 0: break
 
         # Print the stopping condition.
 
         if show:
-            print ' '
-            print 'LSMR finished'
-            print msg[istop]
+            print(' ')
+            print('LSMR finished')
+            print(msg[istop])
             str1    = 'istop =%8g    normr =%8.1e'      %( istop, normr )
             str2    = '    normA =%8.1e    normAr =%8.1e' %( normA, normar)
             str3    = 'itn   =%8g    condA =%8.1e'      %( itn  , condA )
             str4    = '    normx =%8.1e'                %( normx)
-            print str1, str2
-            print str3, str4
-            print 'Estimated energy norm of x: %7.1e' % sqrt(xNrgNorm2)
+            print(str1, str2)
+            print(str3, str4)
+            print('Estimated energy norm of x: %7.1e' % sqrt(xNrgNorm2))
 
         self.x = x
         return x, istop, itn, normr, normar, normA, condA, normx

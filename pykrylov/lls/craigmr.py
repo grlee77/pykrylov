@@ -187,7 +187,7 @@ class CRAIGMRFramework(KrylovMethod):
             zeta     = c_hat * zeta_hat
             zeta_hat = s_hat * zeta_hat
             xNrgNorm2 += zeta * zeta
-            print itn, xNrgNorm2
+            print(itn, xNrgNorm2)
             d = (u - beta_hat * d) / alpha_hat
             x += zeta * dbar
 
@@ -212,10 +212,10 @@ class CRAIGMRFramework(KrylovMethod):
             if istop > 0: break
 
         if show:
-            print ' '
-            print 'CRAIG-MR finished'
-            print self.msg[istop]
-            print ' '
+            print(' ')
+            print('CRAIG-MR finished')
+            print(self.msg[istop])
+            print(' ')
             #str1 = 'istop =%8g   r1norm =%8.1e'   % (istop, sqrt(r1norm))
             #str2 = 'Anorm =%8.1e   Arnorm =%8.1e' % (Anorm, Arnorm)
             #str3 = 'itn   =%8g   r2norm =%8.1e'   % ( itn, sqrt(r2norm))
@@ -226,8 +226,8 @@ class CRAIGMRFramework(KrylovMethod):
             #print str1 #+ '   ' + str2
             #print str3 #+ '   ' + str4
             #print str5
-            print str6
-            print ' '
+            print(str6)
+            print(' ')
 
         if istop == 0: self.status = 'solution is zero'
         if istop in [1,2,4,5]: self.status = 'residual small'

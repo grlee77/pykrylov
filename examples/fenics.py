@@ -57,10 +57,10 @@ if __name__ == '__main__':
     ksolver = KSolver(lambda v: A*v, precon=lambda u: u/diagA)
     ksolver.solve(b.array())
 
-    print 'Using ' + ksolver.name
-    print 'Converged: ', ksolver.converged
-    print 'Initial/Final Residual:  %7.1e/%7.1e' % (ksolver.residNorm0,ksolver.residNorm)
-    print 'Matvecs:   ', ksolver.nMatvec
+    print('Using ' + ksolver.name)
+    print('Converged: ', ksolver.converged)
+    print('Initial/Final Residual:  %7.1e/%7.1e' % (ksolver.residNorm0,ksolver.residNorm))
+    print('Matvecs:   ', ksolver.nMatvec)
 
     # Plot solution
     u = Function(V)

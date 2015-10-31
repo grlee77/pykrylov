@@ -72,7 +72,7 @@ def check_symmetric(op, repeats=10):
         return False
     eps = machine_epsilon()
     np.random.seed(1)
-    for _ in xrange(repeats):
+    for _ in range(repeats):
         x = np.random.random(n)
         w = op * x
         r = op * w
@@ -95,7 +95,7 @@ def check_positive_definite(op, repeats=10, semi=False):
     m, n = op.shape
     if m != n:
         return False
-    for _ in xrange(repeats):
+    for _ in range(repeats):
         v = np.random.random(n)
         w = op * v
         vw = np.dot(v, w)

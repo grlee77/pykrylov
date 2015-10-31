@@ -1,6 +1,6 @@
 """Test LBFGS linear operators. """
 
-from __future__ import division
+
 import unittest
 import numpy as np
 from pykrylov.linop import lbfgs

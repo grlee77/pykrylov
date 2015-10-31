@@ -2,12 +2,12 @@
 
 __docformat__ = 'restructuredtext'
 
-from version import version as __version__
+from .version import version as __version__
 
 # Imports
 
 
-__all__ = filter(lambda s: not s.startswith('_'), dir())
+__all__ = [s for s in dir() if not s.startswith('_')]
 __all__ += '__version__'
 
 __doc__ += """

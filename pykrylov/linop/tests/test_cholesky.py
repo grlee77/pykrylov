@@ -1,6 +1,6 @@
 """Test Cholesky linear operator."""
 
-from __future__ import division
+
 import unittest
 import numpy as np
 from pykrylov.tools import check_symmetric, check_positive_definite

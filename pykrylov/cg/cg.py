@@ -73,7 +73,7 @@ class CG( KrylovMethod ):
 
         # Initial guess
         result_type = np.result_type(self.op.dtype, rhs.dtype)
-        guess_supplied = 'guess' in kwargs.keys()
+        guess_supplied = 'guess' in list(kwargs.keys())
         x = kwargs.get('guess', np.zeros(n)).astype(result_type)
 
         if store_iterates:

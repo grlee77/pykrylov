@@ -166,13 +166,13 @@ class LSQRFramework(KrylovMethod):
         cs2 = -1. ; sn2 = 0.
 
         if show:
-            print ' '
-            print 'LSQR            Least-squares solution of  Ax = b'
+            print(' ')
+            print('LSQR            Least-squares solution of  Ax = b')
             str1='The matrix A has %8d rows and %8d cols' % (m, n)
             str2='damp = %20.14e     wantvar = %-5s' % (damp, repr(wantvar))
             str3='atol = %8.2e                 conlim = %8.2e' % (atol,conlim)
             str4='btol = %8.2e                 itnlim = %8g' % (btol, itnlim)
-            print str1; print str2; print str3; print str4;
+            print(str1); print(str2); print(str3); print(str4);
 
         # Set up the first vectors u and v for the bidiagonalization.
         # These satisfy  beta*M*u = b,  alpha*N*v = A'u.
@@ -212,7 +212,7 @@ class LSQRFramework(KrylovMethod):
         x_is_zero = False   # Is x=0 the solution to the least-squares prob?
         Arnorm = alpha * beta
         if Arnorm == 0.0:
-            if show: print self.msg[0]
+            if show: print(self.msg[0])
             x_is_zero = True
             istop = 0
 
@@ -224,14 +224,14 @@ class LSQRFramework(KrylovMethod):
         head2  = ' Compatible   LS      Norm A   Cond A'
 
         if show:
-            print ' '
-            print head1+head2
+            print(' ')
+            print(head1+head2)
             test1  = 1.0
             test2  = alpha / beta if not x_is_zero else 1.0
             str1   = '%6g %12.5e'     % (itn,    x[0])
             str2   = ' %10.3e %10.3e' % (r1norm, r2norm)
             str3   = '  %8.1e %8.1e'  % (test1,  test2)
-            print str1+str2+str3
+            print(str1+str2+str3)
 
         if store_resids:
             self.resids.append(r2norm)
@@ -408,7 +408,7 @@ class LSQRFramework(KrylovMethod):
                 str2 = ' %10.3e %10.3e' % (r1norm, r2norm)
                 str3 = '  %8.1e %8.1e'  % (test1,  test2)
                 str4 = ' %8.1e %8.1e'   % (Anorm,  Acond)
-                print str1+str2+str3+str4
+                print(str1+str2+str3+str4)
 
             if istop > 0: break
 
@@ -416,10 +416,10 @@ class LSQRFramework(KrylovMethod):
             # Print the stopping condition.
 
         if show:
-            print ' '
-            print 'LSQR finished'
-            print self.msg[istop]
-            print ' '
+            print(' ')
+            print('LSQR finished')
+            print(self.msg[istop])
+            print(' ')
             str1 = 'istop =%8g   r1norm =%8.1e'   % (istop, r1norm)
             str2 = 'Anorm =%8.1e   Arnorm =%8.1e' % (Anorm, Arnorm)
             str3 = 'itn   =%8g   r2norm =%8.1e'   % ( itn, r2norm)
@@ -427,11 +427,11 @@ class LSQRFramework(KrylovMethod):
             str5 = '                  bnorm  =%8.1e'    % bnorm
             str6 = 'xNrgNorm2 = %7.1e   trnDirErr = %7.1e' % \
                     (xNrgNorm2, trncDirErr)
-            print str1 + '   ' + str2
-            print str3 + '   ' + str4
-            print str5
-            print str6
-            print ' '
+            print(str1 + '   ' + str2)
+            print(str3 + '   ' + str4)
+            print(str5)
+            print(str6)
+            print(' ')
 
         if istop == 0: self.status = 'solution is zero'
         if istop in [1,2,4,5]: self.status = 'residual small'
@@ -469,4 +469,4 @@ if __name__ == '__main__':
     rhs = np.array([2.0])
     lsqr = LSQRFramework(B)
     lsqr.solve(rhs, M=A, N=C, damp=1.0, show=True)
-    print 'Solution: ', lsqr.x
+    print('Solution: ', lsqr.x)
