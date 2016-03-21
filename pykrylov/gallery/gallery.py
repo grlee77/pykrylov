@@ -18,7 +18,7 @@ def Poisson2dMatvec(x):
     y[:n-1] -= x[1:n]
     y[1:n] -= x[:n-1]
     # Contribution of intermediate diagonal blocks
-    for i in xrange(1,n-1):
+    for i in range(1,n-1):
         xi = x[i*n:(i+1)*n]   # This a view of x, not a copy
         yi = y[i*n:(i+1)*n]
         yi[:-1] -= xi[1:]

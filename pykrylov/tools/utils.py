@@ -67,7 +67,7 @@ def check_symmetric(op, repeats=10):
         return False
     eps = machine_epsilon()
     np.random.seed(1)
-    for k in xrange(repeats):
+    for k in range(repeats):
         x = np.random.random(n)
         w = op * x
         r = op * w
@@ -82,4 +82,4 @@ def check_symmetric(op, repeats=10):
 
 if __name__ == '__main__':
     roots = roots_quadratic(2.0e+20, .1, -4)
-    print 'Received: ', roots
+    print('Received: ', roots)

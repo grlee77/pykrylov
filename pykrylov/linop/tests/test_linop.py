@@ -26,7 +26,7 @@
 #OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
 #SUCH DAMAGE.
 
-from __future__ import division
+
 import unittest
 from numpy.testing import assert_, assert_equal, assert_raises
 from numpy.testing import assert_almost_equal
@@ -313,7 +313,7 @@ class TestReducedLinearOperator(unittest.TestCase):
         A = lo.linop_from_ndarray(np.outer(v, v))
         R = lo.ReducedLinearOperator(A, [1, 2, 3], [4, 5])
         self.assertFalse(R.symmetric)
-        self.assert_(R.shape == (3, 2))
+        self.assertTrue(R.shape == (3, 2))
 
     def test_runtime(self):
         v = np.arange(6)
@@ -336,7 +336,7 @@ class TestSymmetricallyReducedLinearOperator(unittest.TestCase):
         A = lo.linop_from_ndarray(np.outer(v, v))
         R = lo.SymmetricallyReducedLinearOperator(A, [1, 2, 3])
         self.assertFalse(R.symmetric)
-        self.assert_(R.shape == (3, 3))
+        self.assertTrue(R.shape == (3, 3))
 
     def test_runtime(self):
         v = np.arange(6)

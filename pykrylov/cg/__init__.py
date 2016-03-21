@@ -1,5 +1,5 @@
 """Conjugate-Gradient Algorithm"""
 
-from cg import *
+from .cg import *
 
-__all__ = filter(lambda s:not s.startswith('_'), dir())
+__all__ = [s for s in dir() if not s.startswith('_')]

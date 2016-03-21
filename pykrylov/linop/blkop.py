@@ -3,6 +3,7 @@ from pykrylov.linop import ShapeError, null_log
 from copy import copy
 import numpy as np
 import itertools
+from functools import reduce
 
 
 class BlockLinearOperator(LinearOperator):
@@ -63,8 +64,8 @@ class BlockLinearOperator(LinearOperator):
         nargout = sum([out[0] for out in nargouts])
 
         # Create blocks of transpose operator.
-        self._blocksT = map(lambda *row: [blk.T for blk in row], *self._blocks)
-        self._blocksH = map(lambda *row: [blk.H for blk in row], *self._blocks)
+        self._blocksT = list(map(lambda *row: [blk.T for blk in row], *self._blocks))
+        self._blocksH = list(map(lambda *row: [blk.H for blk in row], *self._blocks))
 
         def blk_matvec(x, blks):
             nargins = [[blk.shape[-1] for blk in blkrow] for blkrow in blks]
@@ -140,8 +141,8 @@ class BlockLinearOperator(LinearOperator):
                     else:
                         self._blocks[i][j] = self._blocks[j][i].H
         else:
-            self._blocksT = map(lambda *row: [blk.T for blk in row], *self._blocks)
-            self._blocksH = map(lambda *row: [blk.H for blk in row], *self._blocks)
+            self._blocksT = list(map(lambda *row: [blk.T for blk in row], *self._blocks))
+            self._blocksH = list(map(lambda *row: [blk.H for blk in row], *self._blocks))
 
     def __contains__(self, op):
         return op in list(itertools.chain(*self.blocks))
@@ -306,12 +307,12 @@ if __name__ == '__main__':
                        matvec=lambda v: v, symmetric=True)
 
 
-    print A.shape, A.T.shape
-    print B.shape, B.T.shape
-    print C.shape, C.T.shape
-    print D.shape, D.T.shape
-    print E.shape, E.T.shape
-    print F.shape, F.T.shape
+    print(A.shape, A.T.shape)
+    print(B.shape, B.T.shape)
+    print(C.shape, C.T.shape)
+    print(D.shape, D.T.shape)
+    print(E.shape, E.T.shape)
+    print(F.shape, F.T.shape)
 
     # Build [A  B].
     K1 = BlockLinearOperator([[A, B]], logger=log)
@@ -322,27 +323,27 @@ if __name__ == '__main__':
 
     x = np.ones(K2.shape[1])
     K2x = K2 * x
-    print 'K2*e = ', K2x
+    print('K2*e = ', K2x)
 
     y = np.ones(K2.shape[0])
     K2Ty = K2.T * y
-    print 'K2.T*e = ', K2Ty
+    print('K2.T*e = ', K2Ty)
 
     # Build [A  B]
     #       [B' E]
     K3 = BlockLinearOperator([[A, B], [E]], symmetric=True, logger=log)
     y = np.ones(K3.shape[0])
     K3y = K3 * y
-    print 'K3*e = ', K3y
+    print('K3*e = ', K3y)
     K3Ty = K3.T * y
-    print 'K3.T*e = ', K3Ty
+    print('K3.T*e = ', K3Ty)
 
     K4 = BlockDiagonalLinearOperator([A, E], symmetric=True, logger=log)
     y = np.ones(K4.shape[0])
     K4y = K4 * y
-    print 'K4*e = ', K4y
+    print('K4*e = ', K4y)
     K4Ty = K4.T * y
-    print 'K4.T*e = ', K4Ty
+    print('K4.T*e = ', K4Ty)
 
     # Build [A  B  C']
     #       [B' E  D']
@@ -350,7 +351,7 @@ if __name__ == '__main__':
     K5 = BlockLinearOperator([[A, B, C.T], [E, D.T], [F]], symmetric=True, logger=log)
     y = np.ones(K5.shape[0])
     K5y = K5 * y
-    print 'K5 = \n', K5.to_array()
-    print 'K5*e = ', K5y
+    print('K5 = \n', K5.to_array())
+    print('K5*e = ', K5y)
     K5Ty = K5.T * y
-    print 'K5.T*e = ', K5Ty
+    print('K5.T*e = ', K5Ty)

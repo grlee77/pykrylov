@@ -194,13 +194,13 @@ class CRAIGFramework(KrylovMethod):
         #xnorm = 0.0
 
         if show:
-            print ' '
-            print 'CRAIG           Least-squares solution of  Ax = b'
+            print(' ')
+            print('CRAIG           Least-squares solution of  Ax = b')
             str1='The matrix A has %8d rows and %8d cols' % (m, n)
             str2='damp = %20.14e     wantvar = %-5s' % (damp, repr(wantvar))
             str3='atol = %8.2e                 conlim = %8.2e' % (atol,conlim)
             str4='btol = %8.2e                 itnlim = %8g' % (btol, itnlim)
-            print str1; print str2; print str3; print str4;
+            print(str1); print(str2); print(str3); print(str4);
 
         # Set up the first vectors u and v for the bidiagonalization.
         # These satisfy  beta*M*u = b,  alpha*N*v = A'u.
@@ -239,7 +239,7 @@ class CRAIGFramework(KrylovMethod):
         #Arnorm = alpha * beta
         #if Arnorm == 0.0:
         if beta == 0.0:
-            if show: print self.msg[0]
+            if show: print(self.msg[0])
             x_is_zero = True
             istop = 0
 
@@ -484,10 +484,10 @@ class CRAIGFramework(KrylovMethod):
             # Print the stopping condition.
 
         if show:
-            print ' '
-            print 'CRAIG finished'
-            print self.msg[istop]
-            print ' '
+            print(' ')
+            print('CRAIG finished')
+            print(self.msg[istop])
+            print(' ')
             str1 = 'istop =%8g   r1norm =%8.1e'   % (istop, sqrt(r1norm))
             #str2 = 'Anorm =%8.1e   Arnorm =%8.1e' % (Anorm, Arnorm)
             str3 = 'itn   =%8g   r2norm =%8.1e'   % ( itn, sqrt(r2norm))
@@ -495,11 +495,11 @@ class CRAIGFramework(KrylovMethod):
             str5 = '                  bnorm  =%8.1e'    % bnorm
             str6 = 'xNrgNorm2 = %7.1e   trnDirErr = %7.1e' % \
                     (xNrgNorm2, trncDirErr)
-            print str1 #+ '   ' + str2
-            print str3 #+ '   ' + str4
-            print str5
-            print str6
-            print ' '
+            print(str1) #+ '   ' + str2
+            print(str3) #+ '   ' + str4
+            print(str5)
+            print(str6)
+            print(' ')
 
         if istop == 0: self.status = 'solution is zero'
         if istop in [1,2,4,5]: self.status = 'residual small'
@@ -540,4 +540,4 @@ if __name__ == '__main__':
     rhs = np.array([2.0])
     craig = CRAIGFramework(B)
     craig.solve(rhs, M=A, N=C, show=True)
-    print 'Solution: ', craig.x
+    print('Solution: ', craig.x)

@@ -145,10 +145,10 @@ class Minres(KrylovMethod):
         eps = self.eps
 
         if show:
-            print self.first + 'Solution of symmetric Ax = b'
-            print 'n      =  %3d     precon =  %4s           shift  =  %23.14e'\
-                % (n, (precon != None), shift)
-            print 'itnlim =  %3d     rtol   =  %11.2e\n' % (itnlim, rtol)
+            print(self.first + 'Solution of symmetric Ax = b')
+            print('n      =  %3d     precon =  %4s           shift  =  %23.14e'\
+                % (n, (precon != None), shift))
+            print('itnlim =  %3d     rtol   =  %11.2e\n' % (itnlim, rtol))
 
         istop = 0;   itn = 0;     Anorm = 0.0;    Acond = 0.0;
         rnorm = 0.0; ynorm = 0.0; done  = False;
@@ -208,10 +208,10 @@ class Minres(KrylovMethod):
         r2 = r1.copy()
 
         if show:
-            print ' '*2
+            print(' '*2)
             head1 = '   Itn     x[0]     Compatible    LS'
             head2 = '       norm(A)  cond(A) gbar/|A|'   ###### Check gbar
-            print head1 + head2
+            print(head1 + head2)
 
         # ---------------------------------------------------------------------
         # Main iteration loop.
@@ -376,21 +376,21 @@ class Minres(KrylovMethod):
                     str1 = '%6g %12.5e %10.3e' % (itn, x[0], test1)
                     str2 = ' %10.3e' % test2
                     str3 = ' %8.1e %8.1e %8.1e' % (Anorm, Acond, gbar/Anorm)
-                    print str1 + str2 + str3
+                    print(str1 + str2 + str3)
 
                 if istop > 0: break
 
-                if (itn % 10)==0: print ' '
+                if (itn % 10)==0: print(' ')
 
         # Display final status.
 
         if show:
             last = self.last
-            print last+' istop   =  %3g               itn   =%5g' % (istop,itn)
-            print last+' Anorm   =  %12.4e      Acond =  %12.4e' %(Anorm,Acond)
-            print last+' rnorm   =  %12.4e      ynorm =  %12.4e' % (rnorm,ynorm)
-            print last+' Arnorm  =  %12.4e' % Arnorm
-            print last+self.msg[istop+1]
+            print(last+' istop   =  %3g               itn   =%5g' % (istop,itn))
+            print(last+' Anorm   =  %12.4e      Acond =  %12.4e' %(Anorm,Acond))
+            print(last+' rnorm   =  %12.4e      ynorm =  %12.4e' % (rnorm,ynorm))
+            print(last+' Arnorm  =  %12.4e' % Arnorm)
+            print(last+self.msg[istop+1])
 
         self.converged = istop in [1,2,3,4,10]
         if istop == 10: self.status = 'direct error small'

@@ -28,7 +28,7 @@ def demo(KSolver, mtx, **kwargs):
 
     err = np.linalg.norm(ks.bestSolution-e)/sqrt(n)
 
-    print
-    print hdr
-    print '-' * len(hdr)
-    print fmt % (ks.acronym, ks.nMatvec, ks.residNorm0, ks.residNorm, err)
+    print()
+    print(hdr)
+    print('-' * len(hdr))
+    print(fmt % (ks.acronym, ks.nMatvec, ks.residNorm0, ks.residNorm, err))
